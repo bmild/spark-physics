@@ -37,7 +37,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // ===================================================================================================
 
 // const GLOBAL_SCALE = 2.2;
-const GLOBAL_SCALE = .7;
+// const GLOBAL_SCALE = .7;  // hobbit
+const GLOBAL_SCALE = 1.4;
 
 const CONFIG = {
 	// Physics
@@ -71,21 +72,23 @@ const CONFIG = {
 		// SPLATS: "kitchen_splats_500k.spz",
 		// MESH: "britt_stitched.glb",
 		// SPLATS: "britt_stitched.spz",
-		MESH: "hobbit_stitched.glb",
-		SPLATS: "hobbit_stitched.spz",
+		// MESH: "hobbit_stitched.glb",
+		// SPLATS: "hobbit_stitched.spz",
+		MESH: "britt_house_scene_mesh_0.glb",
+		SPLATS: "https://storage.googleapis.com/forge-dev-public/britt_house_2p5m.spz",
 		SPLAT_SCALE: 3,
 	},
 
 	CHARACTERS: {
 		ORC: {
 			MODEL: "orc.glb",
-			POSITION: [-2, -.8, 0],
+			POSITION: [-2, 0., 0],
 			ROTATION: Math.PI / 2,
 			SCALE: [1, 1, 1],
 		},
 		BARTENDER: {
 			MODEL: "Bartending.fbx",
-			POSITION: [3.0, -.7, 2],
+			POSITION: [3.0, 0, 2],
 			ROTATION: -Math.PI / 2,
 			SCALE: [0.007, 0.007, 0.007],
 		},
@@ -596,7 +599,8 @@ async function init() {
 	const gltfLoader = new GLTFLoader();
 	gltfLoader.load(CONFIG.ENVIRONMENT.MESH, (gltf) => {
 		environment = gltf.scene;
-		environment.scale.set(-1, -1, 1);
+		// environment.scale.set(-1, -1, 1);
+		// environment.scale.set(-1, 1, 1);
 		scene.add(environment);
 
 		// Create physics colliders from mesh geometry
@@ -644,7 +648,8 @@ async function init() {
 
 	// Configure splat mesh
 	const { SPLAT_SCALE } = CONFIG.ENVIRONMENT;
-	splatMesh.scale.set(SPLAT_SCALE, -SPLAT_SCALE, SPLAT_SCALE);
+	// splatMesh.scale.set(SPLAT_SCALE, -SPLAT_SCALE, SPLAT_SCALE);
+	// splatMesh.scale.set(SPLAT_SCALE, SPLAT_SCALE, SPLAT_SCALE);
 	splatMesh.position.set(0, 0, 0);
 
 	// ===== CHARACTER LOADING =====
