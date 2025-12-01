@@ -38,7 +38,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 // const GLOBAL_SCALE = 2.2;
 // const GLOBAL_SCALE = .7;  // hobbit
-const GLOBAL_SCALE = 1.4;
+const GLOBAL_SCALE = 2.8;
 
 const CONFIG = {
 	// Physics
@@ -74,8 +74,12 @@ const CONFIG = {
 		// SPLATS: "britt_stitched.spz",
 		// MESH: "hobbit_stitched.glb",
 		// SPLATS: "hobbit_stitched.spz",
-		MESH: "britt_house_scene_mesh_0.glb",
-		SPLATS: "https://storage.googleapis.com/forge-dev-public/britt_house_2p5m.spz",
+		// MESH: "britt_house_scene_mesh_0.glb",
+		// SPLATS: "https://storage.googleapis.com/forge-dev-public/britt_house_2p5m.spz",
+		// MESH: "stairs.glb",
+		// SPLATS: "stairs.spz",
+		MESH: "cozy_space_ship_mesh.glb",
+		SPLATS: "https://public-spz.t3.storage.dev/cozy_space_ship.spz",
 		SPLAT_SCALE: 3,
 	},
 
@@ -271,7 +275,7 @@ const FIXED_TIME_STEP = 1 / 60;
 const MAX_SUBSTEPS = 5;
 
 // Global mute flag and helper
-window.__MUTED__ = false;
+window.__MUTED__ = true;
 function setMuted(m) {
 	window.__MUTED__ = !!m;
 	// Update UI icon if present
@@ -421,7 +425,8 @@ async function init() {
 	// Create FPS player capsule body
 	let playerBody = null;
 	{
-		const startY = 1.2;
+		// const startY = 1.2;
+		const startY = 7;
 		const bodyDesc = RAPIER.RigidBodyDesc.dynamic()
 			.setTranslation(0, startY, 0)
 			.lockRotations(true)
@@ -601,6 +606,7 @@ async function init() {
 		environment = gltf.scene;
 		// environment.scale.set(-1, -1, 1);
 		// environment.scale.set(-1, 1, 1);
+		environment.scale.set(1, 1, 1);
 		scene.add(environment);
 
 		// Create physics colliders from mesh geometry
@@ -650,6 +656,7 @@ async function init() {
 	const { SPLAT_SCALE } = CONFIG.ENVIRONMENT;
 	// splatMesh.scale.set(SPLAT_SCALE, -SPLAT_SCALE, SPLAT_SCALE);
 	// splatMesh.scale.set(SPLAT_SCALE, SPLAT_SCALE, SPLAT_SCALE);
+	splatMesh.scale.set(1, 1, 1);
 	splatMesh.position.set(0, 0, 0);
 
 	// ===== CHARACTER LOADING =====
